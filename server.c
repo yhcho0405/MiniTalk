@@ -6,30 +6,38 @@
 /*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:01:16 by youncho           #+#    #+#             */
-/*   Updated: 2021/07/02 07:17:47 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/02 18:55:09 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
+
 void	sig_handler(int sig, siginfo_t *siginfo, void *unused)
 {
 	static unsigned char	c = 0x00;
 	static int				cnt = 0;
+	static pid_t			client_pid = 0;
+
 	(void)unused;
-	if (sig == SIGUSR1)
-		c |= 0x01;
+	if (!client_pid)
+		client_pid = siginfo->si_pid;
+	c |= (sig == SIGUSR1);
 	if (++cnt == 8)
 	{
+		cnt = 0;
+		if (c == 0x00)
+		{
+			client_pid = 0;
+			return ;
+		}
 		ft_putchar_fd(c , 1);
 		c = 0x00;
-		cnt = 0;
-		kill(siginfo->si_pid, SIGUSR1);
+		kill(client_pid, SIGUSR1);
 	}
 	else
 	{
 		c <<= 1;
-		kill(siginfo->si_pid, SIGUSR2);
+		kill(client_pid, SIGUSR2);
 	}
 }
 
