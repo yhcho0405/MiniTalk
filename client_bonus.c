@@ -6,7 +6,7 @@
 /*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:10:41 by youncho           #+#    #+#             */
-/*   Updated: 2021/07/02 18:57:58 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/02 20:25:08 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int		main(int argc, char **argv)
 		ft_putstr_fd("Usage : ./client [99 < Server PID < 99999] [Message]", 1);
 		return (1);
 	}
+	if (!ft_strlen(argv[2]))
+		exit(0);
 	e.sa_flags = SA_SIGINFO;
 	e.sa_sigaction = sig_handler;
 	sigaction(SIGUSR1, &e, 0);
