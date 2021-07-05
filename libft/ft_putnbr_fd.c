@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youncho <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:16:31 by youncho           #+#    #+#             */
-/*   Updated: 2020/11/13 12:50:24 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/05 23:56:47 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		get_len_2(long long n)
+int	get_len_2(long long n)
 {
 	if (n < 10)
 		return (1);
@@ -37,8 +37,11 @@ void	ft_putnbr_fd(int n, int fd)
 	l = len;
 	ret[len] = 0;
 	ret[--len] = tmp % 10 + '0';
-	while (tmp /= 10)
+	while (tmp / 10)
+	{
+		tmp /= 10;
 		ret[--len] = tmp % 10 + '0';
+	}
 	if (n < 0)
 		ret[0] = '-';
 	write(fd, ret, l);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youncho <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 22:11:32 by youncho           #+#    #+#             */
-/*   Updated: 2020/11/16 19:09:25 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/06 00:37:57 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	else
 		while (len--)
-			*((char*)dst++) = *((char*)src++);
+			*((char *)dst++) = *((char *)src++);
 	return (ret);
 }
