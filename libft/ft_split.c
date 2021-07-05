@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youncho <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 17:31:41 by youncho           #+#    #+#             */
-/*   Updated: 2020/11/20 05:13:46 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/06 00:32:54 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,39 @@ char	**allocate_fail(char **tmp, size_t idx)
 	return (0);
 }
 
+int	init_split(char const *s, char c, size_t *idx, char ***ret)
+{
+	if (!s)
+		return (0);
+	*idx = 0;
+	*ret = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1) + 1);
+	if (!*ret)
+		return (0);
+	return (1);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**ret;
 	char	*tmp;
 	size_t	idx;
+	int		init;
 
-	if (!s)
-		return (0);
-	idx = 0;
-	if (!(ret = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1) + 1)))
+	init = init_split(s, c, &idx, &ret);
+	if (!init)
 		return (0);
 	while (*s)
 	{
 		if (*s == c)
 		{
 			s++;
-			continue;
+			continue ;
 		}
 		tmp = (char *)s;
 		while (*s && *s != c)
 			s++;
-		if (!(ret[idx] = (char *)malloc(s - tmp + 1)))
+		ret[idx] = (char *)malloc(s - tmp + 1);
+		if (!ret[idx])
 			return (allocate_fail(ret, idx));
 		ft_strlcpy(ret[idx++], tmp, s - tmp + 1);
 	}

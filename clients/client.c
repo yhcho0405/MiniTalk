@@ -6,15 +6,16 @@
 /*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:01:22 by youncho           #+#    #+#             */
-/*   Updated: 2021/07/02 20:23:55 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/05 23:51:26 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk.h"
 
 void	connection_terminate(pid_t server_pid)
 {
-	int i;
+	int	i;
+
 	i = 8;
 	while (i--)
 	{
@@ -64,7 +65,7 @@ void	sig_handler(int sig, siginfo_t *siginfo, void *unused)
 	send_bit(0, 0);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	struct sigaction	e;
 

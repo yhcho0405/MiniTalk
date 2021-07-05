@@ -6,11 +6,11 @@
 /*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:10:44 by youncho           #+#    #+#             */
-/*   Updated: 2021/07/02 18:57:57 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/06 00:40:59 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+#include "../includes/minitalk_bonus.h"
 
 void	sig_handler(int sig, siginfo_t *siginfo, void *unused)
 {
@@ -30,7 +30,7 @@ void	sig_handler(int sig, siginfo_t *siginfo, void *unused)
 			client_pid = 0;
 			return ;
 		}
-		ft_putchar_fd(c , 1);
+		ft_putchar_fd(c, 1);
 		c = 0x00;
 		kill(client_pid, SIGUSR1);
 	}
@@ -41,7 +41,7 @@ void	sig_handler(int sig, siginfo_t *siginfo, void *unused)
 	}
 }
 
-int		main(void)
+int	main(void)
 {
 	struct sigaction	e;
 

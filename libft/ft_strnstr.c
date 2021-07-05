@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youncho <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 20:48:55 by youncho           #+#    #+#             */
-/*   Updated: 2020/11/13 12:42:19 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/05 23:53:31 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ char	*ft_strnstr(const char *h, const char *n, size_t len)
 
 	if (!*n)
 		return ((char *)h);
-	if (!len || !(hlen = ft_strlen(h)) ||
-		len < (nlen = ft_strlen(n)))
+	hlen = ft_strlen(h);
+	nlen = ft_strlen(n);
+	if (!len || !hlen || len < nlen)
 		return (0);
 	idx = 0;
 	while (idx + nlen <= len && idx + nlen <= hlen)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youncho <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 11:15:31 by youncho           #+#    #+#             */
-/*   Updated: 2020/11/03 12:56:23 by youncho          ###   ########.fr       */
+/*   Updated: 2021/07/06 00:40:16 by youncho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		get_len(long long n)
+int	get_len(long long n)
 {
 	if (n < 10)
 		return (1);
@@ -33,12 +33,16 @@ char	*ft_itoa(int n)
 		tmp = -tmp;
 	}
 	len += get_len(tmp);
-	if (!(ret = malloc(len + 1)))
+	ret = malloc(len + 1);
+	if (!ret)
 		return (0);
 	ret[len] = 0;
 	ret[--len] = tmp % 10 + '0';
-	while (tmp /= 10)
+	while (tmp / 10)
+	{
+		tmp /= 10;
 		ret[--len] = tmp % 10 + '0';
+	}
 	if (n < 0)
 		ret[0] = '-';
 	return (ret);
