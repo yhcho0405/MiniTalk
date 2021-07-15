@@ -6,7 +6,7 @@
 #    By: youncho <youncho@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 00:49:37 by youncho           #+#    #+#              #
-#    Updated: 2021/07/05 23:50:05 by youncho          ###   ########.fr        #
+#    Updated: 2021/07/15 12:16:26 by youncho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 
 NAME_SV = server
 NAME_CL = client
-NAME_SV_B = server
-NAME_CL_B = client
+NAME_SV_B = server_bonus
+NAME_CL_B = client_bonus
 
 SRCS_SV = ./servers/server.c
 SRCS_CL = ./clients/client.c
@@ -48,10 +48,10 @@ $(NAME_CL): libft $(OBJS_CL)
 bonus: $(NAME_SV_B) $(NAME_CL_B)
 
 $(NAME_SV_B): libft $(OBJS_SV_B)
-	$(CC) -o $@ $(OBJS_SV_B) -Llibft -lft -I./includes
+	$(CC) -o server $(OBJS_SV_B) -Llibft -lft -I./includes
 
 $(NAME_CL_B): libft $(OBJS_CL_B)
-	$(CC) -o $@ $(OBJS_CL_B) -Llibft -lft -I./includes
+	$(CC) -o client $(OBJS_CL_B) -Llibft -lft -I./includes
 
 clean:
 	rm -f servers/*.o
